@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace IndianStatesCensusAnalyserProblem
 {
-    internal class CSVStateCensus
+    public class CSVStateCensus
     {
-        public void ReadStateCensusData(string filepath)
+        public int ReadStateCensusData(string filepath)
         {
             using (var reader = new StreamReader(filepath))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -19,8 +19,10 @@ namespace IndianStatesCensusAnalyserProblem
                 var records = csv.GetRecords<StateCensusData>().ToList();
                 foreach (var data in records)
                 {
-                    Console.WriteLine($"State name: {data.State} Population: {data.Population} AreaInSqKm :{data.AreaInSqKm} DensityPerSqKm: {data.DensityPerSqKm}");
+                    //Console.WriteLine($"State name: {data.State} Population: {data.Population} AreaInSqKm :{data.AreaInSqKm} DensityPerSqKm: {data.DensityPerSqKm}");
+                    Console.WriteLine(data);
                 }
+                return records.Count-1;
             }
         }
     }
